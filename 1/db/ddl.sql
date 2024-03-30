@@ -10,7 +10,7 @@ CREATE DATABASE tb01
     IS_TEMPLATE = False;
 
 CREATE TABLE IF NOT EXISTS tb01 (
-    id integer PRIMARY KEY,
-    col_texto text,
-    col_dt timestamp
+    id SERIAL PRIMARY KEY NOT NULL,
+    col_texto text NOT NULL,
+    col_dt timestamp NOT NULL
 );
