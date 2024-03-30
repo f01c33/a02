@@ -25,10 +25,9 @@ type tb1 struct {
 
 func (t tb1) save() (err error) {
 	if stmt == nil {
-		stmt, err = DB.Prepare("INSERT INTO tb02 (col_texto, col_dt) VALUES ($1, $2)")
-	}
-	if err != nil {
-		return fmt.Errorf("unable to prepare statement: %v", err)
+		if stmt, err = DB.Prepare("INSERT INTO tb02 (col_texto, col_dt) VALUES ($1, $2)"); err != nil {
+			return fmt.Errorf("unable to prepare statement: %v", err)
+		}
 	}
 	result, err := stmt.Exec(t.Text, t.Dt)
 	if err != nil {
@@ -81,13 +80,6 @@ func main() {
 	}
 	defer db.Close()
 	DB = db
-	// err = tb1{
-	// 	Text: "test2",
-	// 	Dt:   time.Now(),
-	// }.save()
-	// if err != nil {
-	// 	panic(err)
-	// }
 	http.HandleFunc("/tb01", endpointTb01)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
