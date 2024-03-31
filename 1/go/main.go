@@ -25,7 +25,7 @@ type tb1 struct {
 
 func (t tb1) save() (err error) {
 	if stmt == nil {
-		if stmt, err = DB.Prepare("INSERT INTO tb02 (col_texto, col_dt) VALUES ($1, $2)"); err != nil {
+		if stmt, err = DB.Prepare("INSERT INTO tb01 (col_texto, col_dt) VALUES ($1, $2)"); err != nil {
 			return fmt.Errorf("unable to prepare statement: %v", err)
 		}
 	}
